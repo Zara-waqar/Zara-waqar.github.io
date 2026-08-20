@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zara Bukhari — AI Automation &amp; AI/ML Engineer</title>
+    <meta
+      name="description"
+      content="Zara Bukhari — AI Automation Engineer &amp; AI/ML Engineer. n8n agentic workflows, RAG pipelines, and applied machine learning."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --canvas: #eef0ec;
+        --canvas-dot: #daddd6;
+        --ink: #171b21;
+        --ink-soft: #4b5259;
+        --card: #ffffff;
+        --card-border: #d8dcd5;
+        --auto: #b8862b;
+        --auto-soft: #f4e9d4;
+        --ml: #1f7a6c;
+        --ml-soft: #dcede9;
+        --line: #b7bcb2;
+        --max: 1120px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(var(--canvas-dot) 1px, transparent 1px) 0 0/22px 22px,
+          var(--canvas);
+        color: var(--ink);
+        font-family: "IBM Plex Sans", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.55;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+      .mono {
+        font-family: "IBM Plex Mono", monospace;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      @media (max-width: 600px) {
+        .wrap {
+          padding: 0 18px;
+        }
+      }
+
+      /* focus visibility */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ---------- NAV ---------- */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(238, 240, 236, 0.88);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--card-border);
+      }
+      nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .brand {
+        font-family: "Space Grotesk";
+        font-weight: 600;
+        font-size: 17px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand-icon {
+        flex-shrink: 0;
+      }
+      .navlinks {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+      }
+      .navlinks a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .navlinks a:hover {
+        color: var(--ink);
+      }
+      .navlinks {
+        display: none;
+      }
+      @media (min-width: 720px) {
+        .navlinks {
+          display: flex;
+        }
+      }
+
+      /* ---------- HERO ---------- */
+      header.hero {
+        padding: 76px 0 60px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .eyebrow {
+        font-family: "IBM Plex Mono";
+        font-size: 12.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 16px;
+        height: 1px;
+        background: var(--line);
+      }
+      h1.name {
+        font-size: clamp(38px, 5.4vw, 58px);
+        line-height: 1.03;
+        font-weight: 700;
+      }
+      .role-line {
+        margin-top: 16px;
+        font-size: clamp(17px, 2.2vw, 20px);
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .role-line b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .hero-copy {
+        margin-top: 22px;
+        max-width: 52ch;
+        color: var(--ink-soft);
+        font-size: 15.5px;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-family: "IBM Plex Mono";
+        font-size: 13px;
+        padding: 11px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        border: 1px solid var(--ink);
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-solid {
+        background: var(--ink);
+        color: var(--canvas);
+      }
+      .btn-solid:hover {
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+      }
+      .btn-outline:hover {
+        background: var(--card);
+      }
+
+      /* node graph svg */
+      .graph-wrap {
+        display: flex;
+        justify-content: center;
+      }
+      .node {
+        fill: var(--card);
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+      .node-label {
+        font-family: "IBM Plex Mono";
+        font-size: 11px;
+        fill: var(--ink);
+        font-weight: 500;
+      }
+      .edge {
+        stroke: var(--line);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-dasharray: 4 4;
+      }
+      .pulse {
+        fill: var(--auto);
+      }
+      .pulse2 {
+        fill: var(--ml);
+      }
+      @keyframes travel {
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
+      }
+      .traveler {
+        offset-rotate: 0deg;
+        animation: travel 3.2s linear infinite;
+      }
+      .traveler2 {
+        animation-delay: 1.1s;
+      }
+
+      /* ---------- SECTION HEADS ---------- */
+      .section {
+        padding: 64px 0;
+        scroll-margin-top: 76px;
+      }
+      header.hero {
+        scroll-margin-top: 76px;
+      }
+      footer {
+        scroll-margin-top: 76px;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 34px;
+      }
+      .section-tag {
+        font-family: "IBM Plex Mono";
+        font-size: 12px;
+        color: var(--ink-soft);
+        letter-spacing: 0.06em;
+      }
+      .section h2 {
+        font-size: clamp(24px, 3vw, 30px);
+      }
+      .hr {
+        border: none;
+        border-top: 1px solid var(--card-border);
+        margin: 0;
+      }
+
+      /* ---------- ABOUT ---------- */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 36px;
+        align-items: start;
+      }
+      @media (max-width: 600px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .photo-slot {
+        width: 170px;
+        height: 220px;
+        border-radius: 12px;
+        border: 1px dashed var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--ink-soft);
+        font-family: "IBM Plex Mono";
+        font-size: 11px;
+        padding: 0px;
+        background: var(--card);
+      }
+      .photo-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+      }
+      .about-copy p {
+        margin: 0 0 14px;
+        color: var(--ink-soft);
+        font-size: 15.5px;
+        max-width: 64ch;
+      }
+      .about-copy strong {
+        color: var(--ink);
+      }
+
+      /* ---------- TRACK TOGGLE ---------- */
+      .toggle {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      .toggle button {
+        font-family: "IBM Plex Mono";
+        font-size: 12.5px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--card-border);
+        background: var(--card);
+        color: var(--ink-soft);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .toggle button.active {
+        border-color: var(--ink);
+        color: var(--ink);
+        background: var(--card);
+      }
+      .toggle button .sw {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        margin-right: 7px;
+        vertical-align: middle;
+      }
+
+      /* ---------- PROJECTS as node list ---------- */
+      .proj-list {
+        position: relative;
+      }
+      .proj-list::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background-image: linear-gradient(var(--line) 60%, transparent 0%);
+        background-size: 1px 8px;
+        background-repeat: repeat-y;
+      }
+      .proj {
+        position: relative;
+        padding-left: 40px;
+        margin-bottom: 26px;
+      }
+      .proj-node {
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 23px;
+        height: 23px;
+        border-radius: 6px;
+        background: var(--card);
+        border: 1.5px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .proj-node .core {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .proj-card {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 20px 22px;
+      }
+      .proj-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .proj-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .badges {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        font-family: "IBM Plex Mono";
+        font-size: 10.5px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .badge-auto {
+        background: var(--auto-soft);
+        color: #7a5a19;
+      }
+      .badge-ml {
+        background: var(--ml-soft);
+        color: #13564b;
+      }
+      .badge-neutral {
+        background: #e7e9e3;
+        color: var(--ink-soft);
+      }
+      .proj-desc {
+        color: var(--ink-soft);
+        font-size: 14.5px;
+        margin: 10px 0 12px;
+        max-width: 70ch;
+      }
+      .stack {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .chip {
+        font-family: "IBM Plex Mono";
+        font-size: 11px;
+        color: var(--ink-soft);
+        background: var(--canvas);
+        border: 1px solid var(--card-border);
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+      .proj-links {
+        display: flex;
+        gap: 16px;
+        font-size: 13px;
+      }
+      .proj-links a {
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 1px;
+      }
+      .proj-links .noRepo {
+        color: var(--ink-soft);
+        font-family: "IBM Plex Mono";
+        font-size: 12px;
+        border: none;
+      }
+
+      /* ---------- EXPERIENCE ---------- */
+      .exp-card {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 24px 26px;
+      }
+      .exp-head {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .exp-role {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .exp-org {
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+      .exp-list {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--ink-soft);
+        font-size: 14.5px;
+      }
+      .exp-list li {
+        margin-bottom: 8px;
+      }
+      .exp-list li::marker {
+        color: var(--auto);
+      }
+
+      /* ---------- SKILLS ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+      .skill-card {
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 18px 20px;
+      }
+      .skill-card h4 {
+        font-size: 13px;
+        font-family: "IBM Plex Mono";
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-soft);
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      /* ---------- EDUCATION ---------- */
+      .edu-card {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 20px 22px;
+      }
+
+      /* ---------- FOOTER / CONTACT ---------- */
+      footer {
+        padding: 60px 0 50px;
+        border-top: 1px solid var(--card-border);
+        margin-top: 20px;
+      }
+      .contact-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .contact-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .contact-links a {
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        border-bottom: 1px solid var(--card-border);
+        padding-bottom: 2px;
+      }
+      .contact-links a:hover {
+        border-color: var(--ink);
+      }
+      .foot-note {
+        font-family: "IBM Plex Mono";
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        margin-top: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a href="#top" class="brand"
+          ><svg
+            class="brand-icon"
+            width="26"
+            height="14"
+            viewBox="0 0 26 14"
+            aria-hidden="true"
+          >
+            <line
+              x1="4"
+              y1="7"
+              x2="22"
+              y2="7"
+              stroke="var(--line)"
+              stroke-width="1.4"
+              stroke-dasharray="2.5 2.5"
+            />
+            <circle cx="4" cy="7" r="4" fill="var(--auto)" />
+            <circle cx="22" cy="7" r="4" fill="var(--ml)" /></svg
+          >Zara Bukhari</a
+        >
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Lahore, Pakistan · Open to opportunities</div>
+          <h1 class="name">Zara Bukhari</h1>
+          <div class="role-line">
+            <b>AI Automation Engineer</b> &nbsp;·&nbsp; <b>AI/ML Engineer</b>
+          </div>
+          <p class="hero-copy">
+            I work across two tracks: building agentic automation with n8n —
+            voice agents, RAG-backed chatbots, workflow pipelines — and applied
+            ML/data engineering, from a large-scale document dedup pipeline to
+            logistic regression models. I build full-stack interfaces in
+            React/Next.js, using tools like Cursor to move faster without losing
+            control of the code. Python is the language I'm most hands-on with,
+            and it runs through everything — the ML models, the automation
+            logic, the backend.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-solid" href="#projects">View projects</a>
+            <a class="btn btn-outline" href="#contact">Get in touch</a>
+            <a
+              class="btn btn-outline"
+              href="https://github.com/Zara-waqar"
+              target="_blank"
+              rel="noopener"
+              >GitHub ↗</a
+            >
+          </div>
+        </div>
+        <div class="graph-wrap">
+          <svg
+            viewBox="0 0 320 260"
+            width="100%"
+            style="max-width: 340px"
+            role="img"
+            aria-label="Diagram showing Zara node connecting to Automation and AI-ML nodes"
+          >
+            <defs>
+              <path id="edgeA" d="M160,60 C120,100 90,130 60,170" />
+              <path id="edgeB" d="M160,60 C200,100 230,130 260,170" />
+            </defs>
+            <path class="edge" d="M160,60 C120,100 90,130 60,170" />
+            <path class="edge" d="M160,60 C200,100 230,130 260,170" />
+
+            <circle class="pulse traveler" r="3.5">
+              <animateMotion
+                dur="3.2s"
+                repeatCount="indefinite"
+                path="M160,60 C120,100 90,130 60,170"
+              />
+            </circle>
+            <circle class="pulse2 traveler traveler2" r="3.5">
+              <animateMotion
+                dur="3.2s"
+                repeatCount="indefinite"
+                path="M160,60 C200,100 230,130 260,170"
+              />
+            </circle>
+
+            <rect class="node" x="110" y="28" width="100" height="42" rx="9" />
+            <text class="node-label" x="160" y="53" text-anchor="middle">
+              zara.bukhari
+            </text>
+
+            <rect
+              class="node"
+              x="6"
+              y="170"
+              width="118"
+              height="52"
+              rx="9"
+              stroke="var(--auto)"
+            />
+            <text
+              class="node-label"
+              x="65"
+              y="192"
+              text-anchor="middle"
+              font-weight="600"
+            >
+              Automation
+            </text>
+            <text
+              class="node-label"
+              x="65"
+              y="209"
+              text-anchor="middle"
+              fill="var(--ink-soft)"
+              font-size="9.5"
+            >
+              n8n · AI agents
+            </text>
+
+            <rect
+              class="node"
+              x="196"
+              y="170"
+              width="118"
+              height="52"
+              rx="9"
+              stroke="var(--ml)"
+            />
+            <text
+              class="node-label"
+              x="255"
+              y="192"
+              text-anchor="middle"
+              font-weight="600"
+            >
+              AI / ML
+            </text>
+            <text
+              class="node-label"
+              x="255"
+              y="209"
+              text-anchor="middle"
+              fill="var(--ink-soft)"
+              font-size="9.5"
+            >
+              RAG · pipelines
+            </text>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <hr class="hr" />
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">01</span>
+          <h2>About</h2>
+        </div>
+        <div class="about-grid">
+          <div class="photo-slot">
+            <img src="IMG_9635.jpg" alt="Photo" />
+          </div>
+          <div class="about-copy">
+            <p>
+              I'm a final-year <strong>Software Engineering</strong> student at
+              Virtual University of Pakistan, building AI agent systems that
+              handle real work — customer conversations, order verification,
+              content pipelines — end to end.
+            </p>
+            <p>
+              During my Data Science internship at
+              <strong>Programmers Force</strong>, I led a multi-stage pipeline
+              that turned a large raw web corpus into a clean, deduplicated
+              document store for downstream RAG systems, and resolved a
+              language-detection accuracy issue affecting multilingual
+              classification. Outside of that, I've built and deployed n8n-based
+              AI agents — including a fragrance e-commerce assistant handling
+              live customer traffic, a restaurant receptionist, and a voice
+              agent persona for my own crochet business, LoomnLove.
+            </p>
+            <p>
+              I hold myself to one rule in every project and every application:
+              I only claim tools and outcomes I've actually built and used.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">02</span>
+          <h2>Projects</h2>
+        </div>
+
+        <div class="toggle" role="group" aria-label="Filter projects by track">
+          <button class="active" data-filter="all">All work</button>
+          <button data-filter="auto">
+            <span class="sw" style="background: var(--auto)"></span>Automation
+          </button>
+          <button data-filter="ml">
+            <span class="sw" style="background: var(--ml)"></span>AI / ML
+          </button>
+        </div>
+
+        <div class="proj-list" id="projList">
+          <div class="proj" data-track="auto">
+            <div class="proj-node">
+              <span class="core" style="background: var(--auto)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">AI Fragrance E-commerce Assistant</div>
+                <div class="badges">
+                  <span class="badge badge-auto">Automation</span
+                  ><span class="badge badge-neutral">RAG</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                Self-initiated AI assistant for an online fragrance store, built
+                to automate customer support, order management, and payment
+                verification through Instagram. Built a RAG retrieval system
+                over the product catalog in a Supabase vector store to power
+                natural-language recommendations, integrated GPT Vision to
+                verify payment screenshots against expected order details, and
+                added Whisper-based transcription so customers could order by
+                voice message. Deployed end-to-end and tested with live customer
+                traffic, including validation logic for inconsistent real-world
+                inputs.
+              </p>
+              <div class="stack">
+                <span class="chip">n8n</span><span class="chip">GPT-5 mini</span
+                ><span class="chip">GPT Vision</span
+                ><span class="chip">Whisper</span
+                ><span class="chip">Supabase Vector Store</span
+                ><span class="chip">Google Sheets</span>
+              </div>
+              <div class="proj-links">
+                <a
+                  href="https://github.com/Zara-waqar/ai-fragrance-ecommerce-assistant"
+                  target="_blank"
+                  rel="noopener"
+                  >Repo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="proj" data-track="auto">
+            <div class="proj-node">
+              <span class="core" style="background: var(--auto)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">Ivy — AI Voice Calling Agent</div>
+                <div class="badges">
+                  <span class="badge badge-auto">Automation</span
+                  ><span class="badge badge-neutral">Voice AI</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                Production-grade voice AI agent prompt built for LoomnLove, my
+                own crochet business. Designed the full conversational persona —
+                call flow, guardrails, few-shot examples, and voice-specific
+                behavior — modeled against a reference agent prompt and
+                delivered in both plain-text and structured JSON formats for
+                direct integration into a voice platform.
+              </p>
+              <div class="stack">
+                <span class="chip">Prompt Engineering</span
+                ><span class="chip">Conversation Design</span
+                ><span class="chip">Voice AI</span
+                ><span class="chip">Guardrails</span>
+              </div>
+              <div class="proj-links">
+                <span class="noRepo">Case study — not yet public</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj" data-track="auto">
+            <div class="proj-node">
+              <span class="core" style="background: var(--auto)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">AI Restaurant Receptionist</div>
+                <div class="badges">
+                  <span class="badge badge-auto">Automation</span
+                  ><span class="badge badge-neutral">RAG</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                An AI receptionist that handles restaurant reservations and
+                customer inquiries end to end. Books, updates, and cancels
+                reservations through Google Calendar, answers
+                restaurant-specific questions (menu, hours, deals) from a
+                Supabase-backed knowledge base instead of the model's general
+                knowledge, and sends confirmation emails automatically.
+              </p>
+              <div class="stack">
+                <span class="chip">n8n</span><span class="chip">GPT-5 mini</span
+                ><span class="chip">Supabase Vector Store</span
+                ><span class="chip">Google Calendar</span
+                ><span class="chip">Gmail</span>
+              </div>
+              <div class="proj-links">
+                <a
+                  href="https://github.com/Zara-waqar/AI-Restaurant-Receptionist"
+                  target="_blank"
+                  rel="noopener"
+                  >Repo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="proj" data-track="auto">
+            <div class="proj-node">
+              <span class="core" style="background: var(--auto)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">AI Tutor Assistant</div>
+                <div class="badges">
+                  <span class="badge badge-auto">Automation</span
+                  ><span class="badge badge-neutral">Retrieval Routing</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                A tutor assistant that dynamically routes each query to the
+                right source instead of defaulting to one retrieval strategy:
+                general questions go through live web search, while
+                course-specific questions are matched by ID and pulled from a
+                structured Google Sheets knowledge base. Built to show that tool
+                selection, not just tool use, is what makes an agent reliable.
+              </p>
+              <div class="stack">
+                <span class="chip">n8n</span><span class="chip">GPT-5 mini</span
+                ><span class="chip">Tavily Search</span
+                ><span class="chip">Google Sheets</span
+                ><span class="chip">Tool Routing</span>
+              </div>
+              <div class="proj-links">
+                <a
+                  href="https://github.com/Zara-waqar/ai-tutor-assistant"
+                  target="_blank"
+                  rel="noopener"
+                  >Repo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="proj" data-track="auto">
+            <div class="proj-node">
+              <span class="core" style="background: var(--auto)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">AI Instagram Content Automation</div>
+                <div class="badges">
+                  <span class="badge badge-auto">Automation</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                An end-to-end content pipeline that turns a single keyword into
+                a published Instagram post: researches the topic via web search,
+                writes a caption, generates an image prompt, renders the image
+                with Flux, and publishes the finished post automatically — no
+                manual steps in between.
+              </p>
+              <div class="stack">
+                <span class="chip">n8n</span><span class="chip">GPT-5 mini</span
+                ><span class="chip">Tavily Search</span
+                ><span class="chip">Flux</span
+                ><span class="chip">Instagram API</span>
+              </div>
+              <div class="proj-links">
+                <a
+                  href="https://github.com/Zara-waqar/ai-instagram-content-automation"
+                  target="_blank"
+                  rel="noopener"
+                  >Repo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="proj" data-track="ml">
+            <div class="proj-node">
+              <span class="core" style="background: var(--ml)"></span>
+            </div>
+            <div class="proj-card">
+              <div class="proj-top">
+                <div class="proj-title">Sentiment Analysis Classifier</div>
+                <div class="badges">
+                  <span class="badge badge-ml">Machine Learning</span>
+                </div>
+              </div>
+              <p class="proj-desc">
+                A logistic regression classifier trained on labeled text data to
+                predict positive, negative, or neutral sentiment from daily user
+                posts. Handled feature preprocessing, an 80/20 train-test split,
+                and evaluation using Pandas and scikit-learn.
+              </p>
+              <div class="stack">
+                <span class="chip">Python</span
+                ><span class="chip">scikit-learn</span
+                ><span class="chip">Pandas</span
+                ><span class="chip">Jupyter</span
+                ><span class="chip">Logistic Regression</span>
+              </div>
+              <div class="proj-links">
+                <a
+                  href="https://github.com/Zara-waqar/sentiment_app"
+                  target="_blank"
+                  rel="noopener"
+                  >Repo ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">03</span>
+          <h2>Experience</h2>
+        </div>
+        <div class="exp-card">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">Data Science Intern</div>
+              <div class="exp-org">Programmers Force</div>
+            </div>
+            <div class="mono" style="font-size: 12.5px; color: var(--ink-soft)">
+              Internship
+            </div>
+          </div>
+          <ul class="exp-list">
+            <li>
+              Led a multi-stage data pipeline — ingestion, content cleaning,
+              quality gating, deduplication, export — turning a large-scale web
+              corpus into a standardized, deduplicated document store for
+              downstream AI/RAG applications.
+            </li>
+            <li>
+              Built the deduplication module using exact-match and
+              near-duplicate detection (hashing and locality-sensitive hashing),
+              balancing speed and recall at scale.
+            </li>
+            <li>
+              Identified and resolved a language-detection accuracy issue
+              affecting multilingual document classification.
+            </li>
+            <li>
+              Designed a quality-gate heuristic scoring documents on length,
+              boilerplate ratio, extraction-error leakage, page-type validity,
+              spam/repetition, and language confidence.
+            </li>
+            <li>
+              Proposed a data-recovery process improvement that was adopted by
+              the team and extended to a second project.
+            </li>
+            <li>
+              Built dashboards (React, Cursor-assisted) for Recruitment,
+              Performance Management, and Operations on an HR automation
+              platform; served as cross-functional reviewer across all three
+              departments, auditing data flows and automation logic for
+              correctness.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">04</span>
+          <h2>Skills</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h4>Automation</h4>
+            <div class="skill-tags">
+              <span class="chip">n8n</span
+              ><span class="chip">Workflow Automation</span
+              ><span class="chip">Webhook Integration</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h4>AI &amp; LLMs</h4>
+            <div class="skill-tags">
+              <span class="chip">RAG</span
+              ><span class="chip">Vector Search</span
+              ><span class="chip">OpenAI API (Chat/Vision/Whisper)</span
+              ><span class="chip">Prompt Engineering</span
+              ><span class="chip">AI Agents</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h4>ML &amp; Data</h4>
+            <div class="skill-tags">
+              <span class="chip">scikit-learn</span
+              ><span class="chip">Pandas</span
+              ><span class="chip">Logistic Regression</span
+              ><span class="chip">Text Preprocessing</span
+              ><span class="chip">Locality-Sensitive Hashing</span
+              ><span class="chip">Language Detection</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h4>Backend &amp; Databases</h4>
+            <div class="skill-tags">
+              <span class="chip">Django</span><span class="chip">REST APIs</span
+              ><span class="chip">PostgreSQL</span
+              ><span class="chip">MongoDB</span
+              ><span class="chip">Supabase</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h4>Frontend</h4>
+            <div class="skill-tags">
+              <span class="chip">React</span><span class="chip">Next.js</span
+              ><span class="chip">HTML</span><span class="chip">CSS</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h4>Languages &amp; Tools</h4>
+            <div class="skill-tags">
+              <span class="chip">Python</span><span class="chip">C++</span
+              ><span class="chip">JavaScript</span><span class="chip">Git</span
+              ><span class="chip">GitHub</span><span class="chip">Jupyter</span
+              ><span class="chip">Cursor</span><span class="chip">VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="hr" />
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-tag">05</span>
+          <h2>Education</h2>
+        </div>
+        <div class="edu-card">
+          <div>
+            <div class="exp-role">BS Software Engineering</div>
+            <div class="exp-org">Virtual University of Pakistan</div>
+          </div>
+          <div
+            class="mono"
+            style="font-size: 12.5px; color: var(--ink-soft); text-align: right"
+          >
+            09/2023 – 08/2027<br />CGPA 3.47 / 4.00
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact">
+      <div class="wrap">
+        <div class="contact-row">
+          <div>
+            <h2 style="font-size: 26px">Let's talk.</h2>
+            <div class="contact-links">
+              <a href="mailto:zarawaqar130@gmail.com">zarawaqar130@gmail.com</a>
+              <a href="tel:03364757111">0336-4757111</a>
+              <a
+                href="https://github.com/Zara-waqar"
+                target="_blank"
+                rel="noopener"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+          <div class="mono" style="font-size: 12.5px; color: var(--ink-soft)">
+            Lahore, Pakistan
+          </div>
+        </div>
+        <div class="foot-note">
+          © 2026 Zara Bukhari — built with n8n-shaped thinking, one node at a
+          time.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Reliable smooth-scroll for nav anchors
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href").slice(1);
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            history.pushState(null, "", "#" + targetId);
+          }
+        });
+      });
+
+      const buttons = document.querySelectorAll(".toggle button");
+      const projects = document.querySelectorAll(".proj");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const f = btn.dataset.filter;
+          projects.forEach((p) => {
+            const tracks = p.dataset.track.split(" ");
+            p.style.display = f === "all" || tracks.includes(f) ? "" : "none";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
